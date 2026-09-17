@@ -1,4 +1,4 @@
-import Birecursive_Derivation_Core
+import Birecursive_Macro_Core
 import SwiftSyntax
 import SwiftSyntaxMacros
 public struct Macro: MemberMacro {

@@ -1,4 +1,4 @@
-import Birecursive_Derivation
+import Birecursive_Macro
 import Testing
 
 @Birecursive

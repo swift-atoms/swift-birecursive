@@ -3,32 +3,32 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "swift-birecursive-derivation",
+    name: "swift-birecursive",
     products: [
-        .library(name: "Birecursive Derivation", targets: ["Birecursive Derivation"]),
-        .library(name: "Birecursive Derivation Core", targets: ["Birecursive Derivation Core"]),
+        .library(name: "Birecursive Macro", targets: ["Birecursive Macro"]),
+        .library(name: "Birecursive Macro Core", targets: ["Birecursive Macro Core"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-molecules/swift-corecursive-derivation.git", branch: "main"),
-        .package(url: "https://github.com/swift-molecules/swift-recursive-derivation.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-corecursive.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-recursive.git", branch: "main"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0"),
     ],
     targets: [
-        .target(name: "Birecursive Derivation Core", dependencies: [
-            .product(name: "Corecursive Derivation Core", package: "swift-corecursive-derivation"),
-            .product(name: "Recursive Derivation Core", package: "swift-recursive-derivation"),
+        .target(name: "Birecursive Macro Core", dependencies: [
+            .product(name: "Corecursive Macro Core", package: "swift-corecursive"),
+            .product(name: "Recursive Macro Core", package: "swift-recursive"),
             .product(name: "SwiftSyntax", package: "swift-syntax"),
         ]),
-        .macro(name: "Birecursive Derivation Macros", dependencies: [
-            "Birecursive Derivation Core",
+        .macro(name: "Birecursive Macro Plugin", dependencies: [
+            "Birecursive Macro Core",
             .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
             .product(name: "SwiftSyntax", package: "swift-syntax"),
             .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
         ]),
-        .target(name: "Birecursive Derivation", dependencies: ["Birecursive Derivation Macros"]),
+        .target(name: "Birecursive Macro", dependencies: ["Birecursive Macro Plugin"]),
         .testTarget(
-            name: "Birecursive Derivation Tests",
-            dependencies: ["Birecursive Derivation"]
+            name: "Birecursive Macro Tests",
+            dependencies: ["Birecursive Macro"]
         ),
     ],
     swiftLanguageModes: [.v6]
