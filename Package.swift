@@ -9,8 +9,8 @@ let package = Package(
         .library(name: "Birecursive Macro Core", targets: ["Birecursive Macro Core"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-molecules/swift-corecursive.git", branch: "main"),
-        .package(url: "https://github.com/swift-molecules/swift-recursive.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-corecursive.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-recursive.git", branch: "main"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0"),
     ],
     targets: [
