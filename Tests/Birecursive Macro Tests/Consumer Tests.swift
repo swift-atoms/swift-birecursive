@@ -2,10 +2,13 @@ import Birecursive_Macro
 import Testing
 
 @Birecursive
-private indirect enum Natural {
+private enum Domain {
+indirect enum Natural {
     case zero
     case successor(Natural)
 }
+}
+private typealias Natural = Domain.Natural
 
 @Test
 func `birecursive project and embed are inverse`() {

@@ -4,28 +4,32 @@ import PackageDescription
 
 let package = Package(
     name: "swift-birecursive",
+    platforms: [.macOS(.v27), .iOS(.v27), .tvOS(.v27), .watchOS(.v27), .visionOS(.v27)],
     products: [
         .library(name: "Birecursive Macro", targets: ["Birecursive Macro"]),
-        .library(name: "Birecursive Macro Core", targets: ["Birecursive Macro Core"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-algebra.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-functor.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-corecursive.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-recursive.git", branch: "main"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0"),
     ],
     targets: [
         .target(name: "Birecursive Macro Core", dependencies: [
-            .product(name: "Corecursive Macro Core", package: "swift-corecursive"),
-            .product(name: "Recursive Macro Core", package: "swift-recursive"),
             .product(name: "SwiftSyntax", package: "swift-syntax"),
         ]),
         .macro(name: "Birecursive Macro Plugin", dependencies: [
+            .product(name: "Type Algebra Syntax", package: "swift-algebra"),
             "Birecursive Macro Core",
             .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
             .product(name: "SwiftSyntax", package: "swift-syntax"),
             .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
         ]),
-        .target(name: "Birecursive Macro", dependencies: ["Birecursive Macro Plugin"]),
+        .target(name: "Birecursive Macro", dependencies: [
+                .product(name: "Corecursive Macro", package: "swift-corecursive"),
+                .product(name: "Recursive Macro", package: "swift-recursive"),
+                .product(name: "Functor Base Macro", package: "swift-functor"),"Birecursive Macro Plugin"]),
         .testTarget(
             name: "Birecursive Macro Tests",
             dependencies: ["Birecursive Macro"]
@@ -47,4 +51,9 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
     let package: [SwiftSetting] = []
 
     target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
+}
+
+// Consumer compilation must reject visibility regressions, even when other packages suppress warnings.
+for target in package.targets where target.type == .test || target.name.hasSuffix("Consumer Fixtures") {
+    target.swiftSettings = (target.swiftSettings ?? []) + [.treatAllWarnings(as: .error)]
 }
