@@ -5,7 +5,7 @@ import SwiftSyntaxMacros
 public struct Macro: MemberAttributeMacro {
     public static func expansion(of node: AttributeSyntax, attachedTo declaration: some DeclGroupSyntax,
         providingAttributesFor member: some DeclSyntaxProtocol, in context: some MacroExpansionContext) throws -> [AttributeSyntax] {
-        try RecursiveShape.validateNamespace(declaration)
+        try Type.Syntax.Recursion.validateNamespace(declaration)
         if declaration.memberBlock.members.contains(where: { $0.decl.is(EnumCaseDeclSyntax.self) }) {
             throw MacroExpansionErrorMessage("@Birecursive attaches prerequisites to nested enums; apply it to their namespace, not to the recursive enum itself.")
         }
