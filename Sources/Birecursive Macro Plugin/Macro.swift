@@ -2,7 +2,9 @@ import Type_Algebra_Syntax
 import Birecursive_Macro_Core
 import SwiftSyntax
 import SwiftSyntaxMacros
-public struct Macro: MemberAttributeMacro {
+public struct Macro: MemberAttributeMacro {}
+
+extension Macro {
     public static func expansion(of node: AttributeSyntax, attachedTo declaration: some DeclGroupSyntax,
         providingAttributesFor member: some DeclSyntaxProtocol, in context: some MacroExpansionContext) throws -> [AttributeSyntax] {
         try Type.Syntax.Recursion.validateNamespace(declaration)
