@@ -13,8 +13,7 @@ extension Macro {
         in context: some MacroExpansionContext
     ) throws -> [AttributeSyntax] {
         try Type.Syntax.Recursion.validateNamespace(declaration)
-        if declaration.memberBlock.members.contains(where: { $0.decl.is(EnumCaseDeclSyntax.self) })
-        {
+        if declaration.memberBlock.members.contains(where: { $0.decl.is(EnumCaseDeclSyntax.self) }) {
             throw MacroExpansionErrorMessage(
                 "@Birecursive attaches prerequisites to nested enums; apply it to their namespace, not to the recursive enum itself."
             )
