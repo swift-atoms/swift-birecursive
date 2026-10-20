@@ -3,10 +3,10 @@ import Testing
 
 @Birecursive
 private enum Domain {
-indirect enum Natural {
-    case zero
-    case successor(Natural)
-}
+    indirect enum Natural {
+        case zero
+        case successor(Natural)
+    }
 }
 private typealias Natural = Domain.Natural
 
