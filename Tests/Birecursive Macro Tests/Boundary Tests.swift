@@ -5,7 +5,7 @@ import Testing
 private enum Nested {
     indirect enum Count {
         case zero
-        case successor(Self)
+        case successor(Count)
     }
 }
 

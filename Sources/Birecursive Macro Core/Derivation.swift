@@ -5,7 +5,10 @@ public enum Derivation {}
 extension Derivation {
     public static func attributes(existing: Set<String>) -> [AttributeSyntax] {
         ["FunctorBase", "Recursive", "Corecursive"].filter { !existing.contains($0) }.map {
-            AttributeSyntax(attributeName: IdentifierTypeSyntax(name: .identifier($0)))
+            AttributeSyntax(
+                attributeName: IdentifierTypeSyntax(name: .identifier($0)),
+                trailingTrivia: .newline
+            )
         }
     }
 }
