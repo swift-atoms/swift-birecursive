@@ -9,10 +9,7 @@ let package = Package(
         .library(name: "Birecursive Macro", targets: ["Birecursive Macro"])
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/swift-atoms/swift-algebra.git",
-            branch: "lane/embedded-swift-birecursive"
-        ),
+        .package(url: "https://github.com/swift-atoms/swift-algebra.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-functor.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-corecursive.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-recursive.git", branch: "main"),
