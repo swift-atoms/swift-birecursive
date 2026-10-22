@@ -5,7 +5,7 @@ import Testing
 private enum Nested {
     indirect enum Count {
         case zero
-        case successor(Count)
+        case successor(Nested.Count)
     }
 }
 
