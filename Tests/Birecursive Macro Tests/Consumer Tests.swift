@@ -5,7 +5,7 @@ import Testing
 private enum Domain {
     indirect enum Natural {
         case zero
-        case successor(Domain.Natural)
+        case successor(Self)
     }
 }
 private typealias Natural = Domain.Natural
