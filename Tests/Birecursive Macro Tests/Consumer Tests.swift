@@ -3,6 +3,8 @@ import Testing
 
 @Birecursive
 private enum Domain {
+    @FunctorBase
+    @Recursive
     indirect enum Natural {
         case zero
         case successor(Natural)

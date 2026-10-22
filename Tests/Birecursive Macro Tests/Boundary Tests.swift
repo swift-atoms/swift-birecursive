@@ -3,6 +3,8 @@ import Testing
 
 @Birecursive
 private enum Nested {
+    @FunctorBase
+    @Recursive
     indirect enum Count {
         case zero
         case successor(Count)
