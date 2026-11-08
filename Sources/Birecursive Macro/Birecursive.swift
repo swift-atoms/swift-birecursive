@@ -1,6 +1,6 @@
-public import Corecursive_Macro
-public import Functor_Base_Macro
-public import Recursive_Macro
+import Corecursive_Macro
+import Functor_Base_Macro
+import Recursive_Macro
 
 @attached(memberAttribute)
 public macro Birecursive() = #externalMacro(module: "Birecursive_Macro_Plugin", type: "Macro")
