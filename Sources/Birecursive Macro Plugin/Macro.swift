@@ -19,12 +19,6 @@ extension Macro {
             )
         }
         guard let enumeration = member.as(EnumDeclSyntax.self) else { return [] }
-        return Derivation.attributes(
-            existing: Set(
-                enumeration.attributes.compactMap {
-                    $0.as(AttributeSyntax.self)?.attributeName.trimmedDescription
-                }
-            )
-        )
+        return Derivation.attributes(existing: enumeration.attributes)
     }
 }
